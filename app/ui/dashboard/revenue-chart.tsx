@@ -21,7 +21,6 @@ export default async function RevenueChart() {
     return <p className="mt-4 text-gray-400">No data available.</p>;
   }
 
-  console.log(revenue)
   return (
     <div className="font-gluten w-full md:col-span-4">
       <h2 className={`mb-4 text-xl md:text-2xl`}>
