@@ -5,7 +5,6 @@ import { lusitana } from '@/app/ui/fonts';
 import { InvoicesTableSkeleton } from '@/app/ui/skeletons';
 import { invoicesModel } from './lib';
 
-
 export default async function Page(props: {
   searchParams?: Promise<{
     query?: string;
