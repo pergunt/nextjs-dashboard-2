@@ -1,10 +1,10 @@
 import Image from 'next/image';
-import { UpdateInvoice, DeleteInvoice } from '@/app/ui/invoices/buttons';
+import {DeleteInvoiceForm, UpdateInvoiceLink} from './components'
 import InvoiceStatus from '@/app/ui/invoices/status';
 import { formatDateToLocal, formatCurrency } from '@/app/lib/utils';
-import { invoicesModel } from '../lib';
+import { invoicesModel } from './lib';
 
-export default async function InvoicesTable({
+export async function InvoicesTable({
                                               query,
                                               currentPage,
                                             }: {
@@ -47,8 +47,8 @@ export default async function InvoicesTable({
                     <p>{formatDateToLocal(invoice.date)}</p>
                   </div>
                   <div className="flex justify-end gap-2">
-                    <UpdateInvoice id={invoice.id} />
-                    <DeleteInvoice id={invoice.id} />
+                    <UpdateInvoiceLink id={invoice.id} />
+                    <DeleteInvoiceForm id={invoice.id} />
                   </div>
                 </div>
               </div>
@@ -109,8 +109,8 @@ export default async function InvoicesTable({
                 </td>
                 <td className="whitespace-nowrap py-3 pl-6 pr-3">
                   <div className="flex justify-end gap-3">
-                    <UpdateInvoice id={invoice.id} />
-                    <DeleteInvoice id={invoice.id} />
+                    <UpdateInvoiceLink id={invoice.id} />
+                    <DeleteInvoiceForm id={invoice.id} />
                   </div>
                 </td>
               </tr>

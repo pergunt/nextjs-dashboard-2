@@ -1,8 +1,6 @@
 import { Suspense } from 'react';
-import Pagination from '@/app/ui/invoices/pagination';
 import Search from '@/app/ui/search';
-import InvoicesTable from './components/InvoicesTable';
-import { CreateInvoice } from '@/app/ui/invoices/buttons';
+import {InvoicesTable, Pagination, CreateInvoiceLink} from './components';
 import { lusitana } from '@/app/ui/fonts';
 import { InvoicesTableSkeleton } from '@/app/ui/skeletons';
 import { invoicesModel } from './lib';
@@ -26,7 +24,7 @@ export default async function Page(props: {
       </div>
       <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
         <Search placeholder="Search invoices..." />
-        <CreateInvoice />
+        <CreateInvoiceLink />
       </div>
       <Suspense key={query + currentPage} fallback={<InvoicesTableSkeleton />}>
         <InvoicesTable query={query} currentPage={currentPage} />
