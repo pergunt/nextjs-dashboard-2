@@ -1,10 +1,10 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
-import {deleteInvoice as mDeleteInvoice} from '../model/invoicesModel'
+import * as invoiceModel from '../model/invoicesModel'
 
 export async function deleteInvoice(id: string) {
-  await mDeleteInvoice(id)
+  await invoiceModel.deleteInvoice(id)
 
   revalidatePath('/dashboard/invoices');
 }

@@ -1,7 +1,7 @@
 'use server';
 
 import { z } from 'zod';
-import {sql} from '@/app/lib/data'
+import * as invoiceModel from '../model/invoiceModel'
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
@@ -24,12 +24,20 @@ export async function updateInvoice(id: string, formData: FormData) {
 
   const amountInCents = amount * 100;
 
-  await sql`
-    UPDATE invoices
-    SET customer_id = ${customerId}, amount = ${amountInCents}, status = ${status}
-    WHERE id = ${id}
-  `;
+  try {
+    await invoiceModel.updateInvoice({
+      customerId,
+      amountInCents,
+      status,
+      id
+    })
 
-  revalidatePath('/dashboard/invoices');
+    revalidatePath('/dashboard/invoices');
+  } catch (error) {
+    // We'll also log the error to the console for now
+    console.error(error);
+    return { message: 'Database Error: Failed to Update Invoice.' };
+  }
+
   redirect('/dashboard/invoices');
 }
